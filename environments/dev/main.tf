@@ -15,8 +15,8 @@ module "frontend" {
   ami                 = var.frontend_ami
   instance_type       = var.instance_type
   key_name            = var.key_name
-  subnet_ids          = module.networking.public_subnet_ids
-  security_group_ids  = [module.networking.frontend_sg_id]
+  subnet_ids          = module.networking.public_subnet_ids  # Sin corchetes porque es una lista
+  security_group_ids  = [module.networking.frontend_sg_id]  # Con corchetes porque es un valor individual
   tags                = var.tags
 }
 
@@ -27,8 +27,8 @@ module "backend" {
   ami                 = var.backend_ami
   instance_type       = var.instance_type
   key_name            = var.key_name
-  subnet_ids          = module.networking.private_subnet_ids
-  security_group_ids  = [module.networking.backend_sg_id]
+  subnet_ids          = module.networking.private_subnet_ids  # Sin corchetes porque es una lista
+  security_group_ids  = [module.networking.backend_sg_id]  # Con corchetes porque es un valor individual
   tags                = var.tags
 }
 
@@ -38,12 +38,12 @@ module "database" {
   allocated_storage      = var.allocated_storage
   engine                 = var.engine
   instance_class         = var.instance_class
-  name                   = var.name
+  db_name                = var.db_name
   username               = var.username
   password               = var.password
   multi_az               = var.multi_az
   db_subnet_group_name   = var.db_subnet_group_name
-  subnet_ids             = module.networking.private_subnet_ids
-  vpc_security_group_ids = [module.networking.database_sg_id]
+  subnet_ids             = module.networking.private_subnet_ids  # Sin corchetes porque es una lista
+  vpc_security_group_ids = [module.networking.database_sg_id]  # Con corchetes porque es un valor individual
   tags                   = var.tags
 }

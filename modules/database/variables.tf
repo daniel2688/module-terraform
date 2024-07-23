@@ -13,62 +13,6 @@ variable "instance_class" {
   type        = string
 }
 
-variable "name" {
-  description = "The name of the database to create"
-  type        = string
-}
-
-variable "username" {
-  description = "Username for the master DB user"
-  type        = string
-}
-
-variable "password" {
-  description = "Password for the master DB user"
-  type        = string
-  sensitive   = true
-}
-
-variable "multi_az" {
-  description = "Specifies if the RDS instance is multi-AZ"
-  type        = bool
-}
-
-variable "db_subnet_group_name" {
-  description = "The name of the DB subnet group to associate"
-  type        = string
-}
-
-variable "vpc_security_group_ids" {
-  description = "List of VPC security groups to associate with"
-  type        = list(string)
-}
-
-variable "subnet_ids" {
-  description = "List of subnet IDs to be used by the DB subnet group"
-  type        = list(string)
-}
-
-variable "tags" {
-  description = "Tags for the RDS instance"
-  type        = map(string)
-}
-
-variable "allocated_storage" {
-  description = "The allocated storage in gigabytes"
-  type        = number
-}
-
-variable "engine" {
-  description = "The database engine to use"
-  type        = string
-}
-
-variable "instance_class" {
-  description = "The instance type of the RDS instance"
-  type        = string
-}
-
 variable "db_name" {
   description = "The name of the database to create"
   type        = string
