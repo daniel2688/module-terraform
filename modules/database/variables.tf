@@ -39,17 +39,17 @@ variable "db_subnet_group_name" {
   type        = string
 }
 
-variable "vpc_security_group_ids" {
-  description = "List of VPC security groups to associate with"
-  type        = list(string)
-}
-
 variable "subnet_ids" {
   description = "List of subnet IDs to be used by the DB subnet group"
   type        = list(string)
 }
 
+variable "security_group_ids" {
+  description = "List of security group IDs to associate with"
+  type        = list(string)
+}
+
 variable "tags" {
-  description = "Tags for the RDS instance"
+  description = "Common tags to assign to resources"
   type        = map(string)
 }

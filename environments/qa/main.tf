@@ -1,5 +1,5 @@
 module "networking" {
-  source = "./modules/networking"
+  source = "../../modules/networking"
 
   vpc_cidr             = var.vpc_cidr
   public_subnet_cidrs  = var.public_subnet_cidrs
@@ -9,19 +9,19 @@ module "networking" {
 }
 
 module "frontend" {
-  source = "./modules/frontend"
+  source = "../../modules/frontend"
 
   instance_count      = var.instance_count
   ami                 = var.frontend_ami
   instance_type       = var.instance_type
   key_name            = var.key_name
-  subnet_ids          = module.networking.public_subnet_ids  # Sin corchetes porque es una lista
-  security_group_ids  = [module.networking.frontend_sg_id]  # Con corchetes porque es un valor individual
+  subnet_ids          = module.networking.public_subnet_ids
+  security_group_ids  = [module.networking.frontend_sg_id]
   tags                = var.tags
 }
 
 module "backend" {
-  source = "./modules/backend"
+  source = "../../modules/backend"
 
   instance_count      = var.instance_count
   ami                 = var.backend_ami
@@ -33,7 +33,7 @@ module "backend" {
 }
 
 module "database" {
-  source = "./modules/database"
+  source = "../../modules/database"
 
   allocated_storage      = var.allocated_storage
   engine                 = var.engine
@@ -44,6 +44,6 @@ module "database" {
   multi_az               = var.multi_az
   db_subnet_group_name   = var.db_subnet_group_name
   subnet_ids             = module.networking.private_subnet_ids  # Sin corchetes porque es una lista
-  vpc_security_group_ids = [module.networking.database_sg_id]  # Con corchetes porque es un valor individual
+  security_group_ids     = [module.networking.database_sg_id]  # Con corchetes porque es un valor individual
   tags                   = var.tags
 }
