@@ -12,7 +12,7 @@ availability_zones   = ["us-east-1a", "us-east-1b"]
 allocated_storage = 20
 engine            = "mysql"
 instance_class    = "db.t3.micro"
-db_name           = "db-prod"
+db_name           = "dbprod"
 username          = "admin"
 password          = "password"
 multi_az          = true
@@ -25,3 +25,33 @@ tags = {
 }
 
 security_group_ids = ["a", "b"]
+
+ingress_rules = [
+  {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  },
+  {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  },
+  {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+]
+
+egress_rules = [
+  {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+]

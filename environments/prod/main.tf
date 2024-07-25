@@ -1,3 +1,4 @@
+
 module "networking" {
   source = "../../modules/networking"
 
@@ -12,11 +13,11 @@ module "frontend" {
   source = "../../modules/frontend"
 
   instance_count      = var.instance_count
-  ami                 = var.frontend_ami
+  frontend_ami        = var.frontend_ami
   instance_type       = var.instance_type
   key_name            = var.key_name
-  subnet_ids          = module.networking.public_subnet_ids  # Sin corchetes porque es una lista
-  security_group_ids  = [module.networking.frontend_sg_id]  # Con corchetes porque es un valor individual
+  subnet_ids          = module.networking.public_subnet_ids  # Usa el output del módulo networking
+  security_group_ids  = [module.networking.frontend_sg_id]  # Usa el output del módulo networking
   tags                = var.tags
 }
 
@@ -24,11 +25,11 @@ module "backend" {
   source = "../../modules/backend"
 
   instance_count      = var.instance_count
-  ami                 = var.backend_ami
+  backend_ami         = var.backend_ami  # Usa la variable backend_ami
   instance_type       = var.instance_type
   key_name            = var.key_name
-  subnet_ids          = module.networking.private_subnet_ids  # Sin corchetes porque es una lista
-  security_group_ids  = [module.networking.backend_sg_id]  # Con corchetes porque es un valor individual
+  subnet_ids          = module.networking.private_subnet_ids  # Usa el output del módulo networking
+  security_group_ids  = [module.networking.backend_sg_id]  # Usa el output del módulo networking
   tags                = var.tags
 }
 
@@ -43,7 +44,7 @@ module "database" {
   password               = var.password
   multi_az               = var.multi_az
   db_subnet_group_name   = var.db_subnet_group_name
-  subnet_ids             = module.networking.private_subnet_ids  # Sin corchetes porque es una lista
-  security_group_ids     = [module.networking.database_sg_id]  # Con corchetes porque es un valor individual
+  subnet_ids             = module.networking.private_subnet_ids  # Usa el output del módulo networking
+  security_group_ids     = [module.networking.database_sg_id]  # Usa el output del módulo networking
   tags                   = var.tags
 }

@@ -4,7 +4,7 @@ variable "instance_count" {
   default     = 2
 }
 
-variable "ami" {
+variable "backend_ami" {
   description = "The AMI to use for the instance"
   type        = string
 }
@@ -19,7 +19,7 @@ variable "key_name" {
   type        = string
 }
 
-variable "subnet_ids" {
+variable "subnet_ids" {  # Usamos subnet_ids aquí
   description = "List of subnet IDs to launch instances in"
   type        = list(string)
 }

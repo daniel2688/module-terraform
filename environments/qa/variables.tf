@@ -1,3 +1,5 @@
+# Variables del modulo backend, frontend networking y database:
+
 variable "instance_count" {
   description = "Number of instances to launch"
   type        = number
@@ -24,11 +26,6 @@ variable "key_name" {
   type        = string
 }
 
-variable "vpc_cidr" {
-  description = "The CIDR block for the VPC"
-  type        = string
-}
-
 variable "public_subnet_cidrs" {
   description = "List of CIDR blocks for the public subnets"
   type        = list(string)
@@ -39,14 +36,19 @@ variable "private_subnet_cidrs" {
   type        = list(string)
 }
 
+variable "vpc_cidr" {
+  description = "The CIDR block for the VPC"
+  type        = string
+}
+
 variable "availability_zones" {
   description = "List of availability zones"
   type        = list(string)
 }
 
-variable "security_group_ids" {
-  description = "List of security group IDs to associate"
-  type        = list(string)
+variable "tags" {
+  description = "Common tags to assign to resources"
+  type        = map(string)
 }
 
 variable "allocated_storage" {
@@ -90,7 +92,29 @@ variable "db_subnet_group_name" {
   type        = string
 }
 
-variable "tags" {
-  description = "Common tags to assign to resources"
-  type        = map(string)
+variable "security_group_ids" {
+  description = "List of security group IDs to associate"
+  type        = list(string)
+}
+
+variable "ingress_rules" {
+  description = "List of ingress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
+}
+
+variable "egress_rules" {
+  description = "List of egress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
 }
