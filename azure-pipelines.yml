@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: 'AWS Toolkit for Azure DevOps'  # Asegúrate de que el nombre esté correcto y entre comillas
+  - group: 'AWS Toolkit for Azure DevOps'
 
 steps:
   - task: TerraformInstaller@0
