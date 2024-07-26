@@ -15,13 +15,13 @@ instance_class    = "db.t3.micro"
 db_name           = "dbprod"
 username          = "admin-test"
 password          = "passwordtest"
-multi_az          = true
-db_subnet_group_name = "prod-db-subnet-group"
+multi_az          = false
+db_subnet_group_name = "prod-db-subnet-group-test"
 
 tags = {
   Environment = "prod"
-  Project     = "example"
-  Owner       = "team-name"
+  Project     = "Para despliegue en en AWS"
+  Owner       = "team-prod"
 }
 
 security_group_ids = ["a", "b"]
