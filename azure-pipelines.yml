@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'AWS Toolkit for Azure DevOps'
+
+steps:
+  - task: TerraformInstaller@0
+    inputs:
+      terraformVersion: 'latest'
+
+  - script: |
+      echo "Setting AWS environment variables"
+      export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+      export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+      cd environments/prod
+      terraform init
+      terraform plan -var-file="terraform.tfvars"
+    displayName: 'Terraform Init and Plan (prod)'
+
+  - script: |
+      echo "Setting AWS environment variables"
+      export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+      export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+      cd environments/prod
+      terraform apply -auto-approve -var-file="terraform.tfvars"
+    displayName: 'Terraform Apply (prod)'
