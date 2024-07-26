@@ -55,3 +55,5 @@ egress_rules = [
     cidr_blocks = ["0.0.0.0/0"]
   }
 ]
+
+aws_region = "us-east-1"
