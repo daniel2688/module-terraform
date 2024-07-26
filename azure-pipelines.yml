@@ -28,3 +28,16 @@ steps:
       cd environments/prod
       terraform apply -auto-approve -var-file="terraform.tfvars"
     displayName: 'Terraform Apply (prod)'
+
+  - script: |
+      echo "Waiting for 3 minutes before destroying resources..."
+      sleep 180
+    displayName: 'Wait for 3 minutes'
+
+  - script: |
+      echo "Setting AWS environment variables"
+      export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+      export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+      cd environments/prod
+      terraform destroy -auto-approve -var-file="terraform.tfvars"
+    displayName: 'Terraform Destroy (prod)'
