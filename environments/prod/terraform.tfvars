@@ -1,7 +1,7 @@
 instance_count = 2
 frontend_ami   = "ami-0427090fd1714168b"
 backend_ami    = "ami-0427090fd1714168b"
-instance_type  = "t2.nano"
+instance_type  = "t2.micro"
 key_name       = "key-test"
 
 vpc_cidr             = "10.0.0.0/16"
