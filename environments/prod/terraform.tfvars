@@ -1,7 +1,7 @@
 instance_count = 2
 frontend_ami   = "ami-0427090fd1714168b"
 backend_ami    = "ami-0427090fd1714168b"
-instance_type  = "t2.micro"
+instance_type  = "t2.nano"
 key_name       = "key-test"
 
 vpc_cidr             = "10.0.0.0/16"
@@ -13,10 +13,10 @@ allocated_storage = 20
 engine            = "mysql"
 instance_class    = "db.t3.micro"
 db_name           = "dbprod"
-username          = "admin-test"
+username          = "admintest"
 password          = "passwordtest"
 multi_az          = false
-db_subnet_group_name = "prod-db-subnet-group-test"
+db_subnet_group_name = "prod-db-subnet-group-tes-1"
 
 tags = {
   Environment = "prod"
