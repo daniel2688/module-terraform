@@ -16,11 +16,11 @@ db_name           = "dbprod"
 username          = "admintest"
 password          = "passwordtest"
 multi_az          = false
-db_subnet_group_name = "prod-db-subnet-group-tes-1"
+db_subnet_group_name = "prod-db-subnet-group-test-0"
 
 tags = {
   Environment = "prod"
-  Project     = "Para despliegue en en AWS"
+  Project     = "For deploy in AWS"
   Owner       = "team-prod"
 }
 
