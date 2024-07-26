@@ -1,5 +1,5 @@
 trigger:
-- main
+- dev
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -28,3 +28,17 @@ steps:
       cd environments/prod
       terraform apply -auto-approve -var-file="terraform.tfvars"
     displayName: 'Terraform Apply (prod)'
+    continueOnError: true
+
+  - script: |
+      echo "Waiting for 1 minute before destroying resources..."
+      sleep 60
+    displayName: 'Wait for 1 minute'
+
+  - script: |
+      echo "Setting AWS environment variables"
+      export AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID)
+      export AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
+      cd environments/prod
+      terraform destroy -auto-approve -var-file="terraform.tfvars"
+    displayName: 'Terraform Destroy (prod)'
