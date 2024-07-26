@@ -28,11 +28,12 @@ steps:
       cd environments/prod
       terraform apply -auto-approve -var-file="terraform.tfvars"
     displayName: 'Terraform Apply (prod)'
+    continueOnError: true
 
   - script: |
-      echo "Waiting for 3 minutes before destroying resources..."
-      sleep 180
-    displayName: 'Wait for 3 minutes'
+      echo "Waiting for 1 minute before destroying resources..."
+      sleep 60
+    displayName: 'Wait for 1 minute'
 
   - script: |
       echo "Setting AWS environment variables"
