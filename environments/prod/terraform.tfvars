@@ -15,7 +15,7 @@ instance_class    = "db.t3.micro"
 db_name           = "dbprod"
 username          = "admin"
 password          = "password"
-multi_az          = false
+multi_az          = true
 db_subnet_group_name = "prod-db-subnet-group"
 
 tags = {
