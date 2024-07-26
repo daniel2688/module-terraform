@@ -13,8 +13,8 @@ allocated_storage = 20
 engine            = "mysql"
 instance_class    = "db.t3.micro"
 db_name           = "dbprod"
-username          = "admin"
-password          = "password"
+username          = "admin-test"
+password          = "passwordtest"
 multi_az          = true
 db_subnet_group_name = "prod-db-subnet-group"
 
