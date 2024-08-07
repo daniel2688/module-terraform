@@ -4,6 +4,7 @@
 .terraform/
 .terraform.lock.hcl
 crash.log
+.terraform.tfstate.lock.info
 
 # General
 *.log
