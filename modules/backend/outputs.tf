@@ -1,7 +1,14 @@
 output "backend_private_ips" {
-  value = aws_instance.backend.*.private_ip
+  description = "Private IP addresses of the backend instances"
+  value       = aws_instance.backend.*.private_ip
 }
 
 output "backend_private_dns" {
-  value = aws_instance.backend.*.private_dns
+  description = "Private DNS names of the backend instances"
+  value       = aws_instance.backend.*.private_dns
+}
+
+output "backend_instance_ids" {
+  description = "IDs of the backend instances"
+  value       = aws_instance.backend.*.id
 }

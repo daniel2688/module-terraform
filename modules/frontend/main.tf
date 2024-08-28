@@ -1,8 +1,8 @@
 resource "aws_instance" "frontend" {
-  count                    = var.instance_count
+  count                    = var.front_instance_count
   ami                      = var.frontend_ami
-  instance_type            = var.instance_type
-  key_name                 = var.key_name
+  instance_type            = var.front_instance_type
+  key_name                 = var.public_key_name
   subnet_id                = var.subnet_ids[count.index]  # Usamos subnet_ids aquí
   vpc_security_group_ids   = var.security_group_ids
   associate_public_ip_address = true

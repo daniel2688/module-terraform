@@ -53,3 +53,4 @@ variable "tags" {
   description = "Common tags to assign to resources"
   type        = map(string)
 }
+

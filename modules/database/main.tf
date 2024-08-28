@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "database" {
   allocated_storage    = var.allocated_storage
   engine               = var.engine
   instance_class       = var.instance_class

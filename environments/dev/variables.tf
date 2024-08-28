@@ -1,7 +1,16 @@
-# Variables del modulo backend, frontend networking y database:
+variable "aws_region" {
+  description = "The AWS region to create resources in"
+  type        = string
+}
 
-variable "instance_count" {
-  description = "Number of instances to launch"
+variable "front_instance_count" {
+  description = "Number of frontend instances to launch"
+  type        = number
+  default     = 2
+}
+
+variable "back_instance_count" {
+  description = "Number of backend instances to launch"
   type        = number
   default     = 2
 }
@@ -16,13 +25,23 @@ variable "backend_ami" {
   type        = string
 }
 
-variable "instance_type" {
-  description = "The type of instance to use"
+variable "front_instance_type" {
+  description = "The type of instance to use for frontend"
   type        = string
 }
 
-variable "key_name" {
-  description = "The key name to use for the instance"
+variable "back_instance_type" {
+  description = "The type of instance to use for backend"
+  type        = string
+}
+
+variable "public_key_name" {
+  description = "The key name to use for frontend instances"
+  type        = string
+}
+
+variable "private_key_name" {
+  description = "The key name to use for backend instances"
   type        = string
 }
 
@@ -92,12 +111,12 @@ variable "db_subnet_group_name" {
   type        = string
 }
 
-variable "security_group_ids" {
-  description = "List of security group IDs to associate"
-  type        = list(string)
-}
+#variable "security_group_ids" {
+#  description = "List of security group IDs to associate"
+#  type        = list(string)
+#}
 
-variable "ingress_rules" {
+variable "ingress_rules_frontend" {
   description = "List of ingress rules"
   type = list(object({
     from_port   = number
@@ -108,7 +127,7 @@ variable "ingress_rules" {
   default = []
 }
 
-variable "egress_rules" {
+variable "egress_rules_frontend" {
   description = "List of egress rules"
   type = list(object({
     from_port   = number
@@ -119,7 +138,46 @@ variable "egress_rules" {
   default = []
 }
 
-variable "aws_region" {
-  description = "The AWS region to create resources in"
-  type        = string
+variable "ingress_rules_backend" {
+  description = "List of ingress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
+}
+
+variable "egress_rules_backend" {
+  description = "List of egress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
+}
+
+variable "ingress_rules_database" {
+  description = "List of ingress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
+}
+
+variable "egress_rules_database" {
+  description = "List of egress rules"
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
 }
